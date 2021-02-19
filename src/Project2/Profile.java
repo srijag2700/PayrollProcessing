@@ -1,4 +1,5 @@
 package Project2;
+
 public class Profile {
     private String name; //employee’s name in the form “lastname,firstname”
     private String department; //department code: CS, ECE, IT
