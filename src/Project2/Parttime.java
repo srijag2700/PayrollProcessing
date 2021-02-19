@@ -1,25 +1,28 @@
 package Project2;
 
 public class Parttime extends Employee{
+
     private int hoursWorked;
 
-    public Parttime() {
+    public Parttime(Profile employeeProfile, double salary) {
+        super(employeeProfile, salary);
         hoursWorked = 0;
+    }
+
+    public int getHoursWorked() {
+        return hoursWorked;
     }
 
     @Override
     public String toString() {
-        return employeeProfile.toString() + "::Payment " + payment + "::PART TIME::Hourly Rate $"
-                + salary + "::Hours worked this period: " + hoursWorked;
+        return super.toString() + "::Payment " + super.getPayment() + "::PART TIME::Hourly Rate $"
+                + super.getSalary() + "::Hours worked this period: " + hoursWorked;
     }
 
     @Override
     public boolean equals(Object obj) {
-        Parttime employee = (Parttime) obj;
-        if (!employeeProfile.equals(employee.employeeProfile)) {
-            return false;
-        }
-        if (salary != employee.salary && payment != employee.payment && hoursWorked != employee.hoursWorked) {
+        Parttime emp = (Parttime) obj;
+        if (!super.equals(obj) && hoursWorked != emp.getHoursWorked()) {
             return false;
         }
         return true;
@@ -32,10 +35,10 @@ public class Parttime extends Employee{
         if (hoursWorked > maxHours) {
             overtimeHours = hoursWorked - maxHours;
             double overtimeRate = 1.5;
-            payment = (maxHours * salary) + (overtimeHours * salary * overtimeRate);
+            super.setPayment((maxHours * super.getSalary()) + (overtimeHours * super.getSalary() * overtimeRate));
         }
         else {
-            payment = hoursWorked * salary;
+            super.setPayment(hoursWorked * super.getSalary());
         }
     }
 }

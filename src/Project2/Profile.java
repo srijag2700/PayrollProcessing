@@ -4,6 +4,12 @@ public class Profile {
     private String department; //department code: CS, ECE, IT
     private Date dateHired;
 
+    public Profile(String name, String department, Date dateHired) {
+        this.name = name;
+        this.department = department;
+        this.dateHired = dateHired;
+    }
+
     public String getName() {
         return name;
     }

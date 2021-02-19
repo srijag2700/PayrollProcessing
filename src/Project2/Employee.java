@@ -1,15 +1,51 @@
 package Project2;
 
 public class Employee {
-    Profile employeeProfile;
-    double salary; // comment
-    double payment;
+
+    private Profile employeeProfile;
+    private double salary; // comment
+
+    private double payment;
 
     public Employee() {
-        payment = 0;
+        this.payment = 0;
+    }
+
+    public Employee(Profile employeeProfile, double salary) {
+        this.employeeProfile = employeeProfile;
+        this.salary = salary;
+        this.payment = 0;
+    }
+
+    public Profile getEmployeeProfile() {
+        return employeeProfile;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setPayment(double payment) {
+        this.payment = payment;
+    }
+
+    public double getPayment() {
+        return payment;
     }
 
     public void calculatePayment() {
         return;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Employee emp = (Employee) obj;
+        if (!employeeProfile.equals(emp.getEmployeeProfile())) {
+            return false;
+        }
+        if (salary != emp.getSalary() && payment != emp.getPayment()) {
+            return false;
+        }
+        return true;
     }
 }
