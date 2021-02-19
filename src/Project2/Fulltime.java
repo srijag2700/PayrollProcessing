@@ -1,17 +1,17 @@
 package Project2;
 
 public class Fulltime extends Employee{
-    int payPeriods = 26; // final?
+    public static final int PAY_PERIODS = 26; // final?
 
     @Override
     public String toString() {
         return employeeProfile.toString() + "::Payment " + payment
-                + "::FULL TIME::Annual Salary " + salary;
+                + "::FULL TIME::Annual Salary $" + salary;
     }
 
     @Override
-    public boolean equals(Fulltime employee) { // ?
-        // ?
+    public boolean equals(Object obj) {
+        Fulltime employee = (Fulltime) obj;
         if (!employeeProfile.equals(employee.employeeProfile)) {
             return false;
         }
@@ -23,7 +23,7 @@ public class Fulltime extends Employee{
 
     @Override
     public void calculatePayment() {
-        payment = salary/payPeriods;
+        payment = salary/PAY_PERIODS;
         // maybe do more?
     }
 }

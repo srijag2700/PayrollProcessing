@@ -2,10 +2,14 @@ package Project2;
 
 public class Employee {
     Profile employeeProfile;
-    double salary;
+    double salary; // comment
     double payment;
 
-    public void calculatePayment() {
+    public Employee() {
+        payment = 0;
+    }
 
+    public void calculatePayment() {
+        return;
     }
 }
