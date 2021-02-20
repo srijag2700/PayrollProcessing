@@ -43,9 +43,7 @@ public class Employee {
         if (!employeeProfile.equals(emp.getEmployeeProfile())) {
             return false;
         }
-        if (salary != emp.getSalary() && payment != emp.getPayment()) {
-            return false;
-        }
+
         return true;
     }
 }

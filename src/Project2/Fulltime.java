@@ -15,7 +15,8 @@ public class Fulltime extends Employee{
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        Employee emp = (Employee) obj;
+        return (super.equals(obj) && super.getSalary() != emp.getSalary() && super.getPayment() != emp.getPayment());
     }
 
     @Override

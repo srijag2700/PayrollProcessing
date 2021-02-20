@@ -18,9 +18,9 @@ public class Management extends Fulltime{
 
     @Override
     public boolean equals(Object obj) {
-        Management employee = (Management) obj;
-        if (!super.equals(obj) && !managementRole.equals(employee.managementRole)
-            && addtlCompensation != employee.addtlCompensation) {
+        Management emp = (Management) obj;
+        if (!super.equals(obj) && super.getSalary() != emp.getSalary() && super.getPayment() != emp.getPayment() && !managementRole.equals(emp.managementRole)
+            && addtlCompensation != emp.addtlCompensation) {
                 return false;
         }
         return true;

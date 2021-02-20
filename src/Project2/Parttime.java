@@ -9,6 +9,10 @@ public class Parttime extends Employee{
         hoursWorked = 0;
     }
 
+    public void setHoursWorked(int hoursWorked) {
+        this.hoursWorked = hoursWorked;
+    }
+
     public int getHoursWorked() {
         return hoursWorked;
     }
@@ -22,7 +26,7 @@ public class Parttime extends Employee{
     @Override
     public boolean equals(Object obj) {
         Parttime emp = (Parttime) obj;
-        if (!super.equals(obj) && hoursWorked != emp.getHoursWorked()) {
+        if (!super.equals(obj) && super.getSalary() != emp.getSalary() && super.getPayment() != emp.getPayment() && hoursWorked != emp.getHoursWorked()) {
             return false;
         }
         return true;
