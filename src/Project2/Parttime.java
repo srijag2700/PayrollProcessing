@@ -9,6 +9,11 @@ public class Parttime extends Employee{
         hoursWorked = 0;
     }
 
+    public Parttime(Profile employeeProfile, int hoursWorked) {
+        super(employeeProfile);
+        this.hoursWorked = hoursWorked;
+    }
+
     public void setHoursWorked(int hoursWorked) {
         this.hoursWorked = hoursWorked;
     }

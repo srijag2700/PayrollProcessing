@@ -3,10 +3,21 @@ package Project2;
 public class Management extends Fulltime{
     private String managementRole;
     private int addtlCompensation;
+    private final static int MANAGER = 1;
+    private final static int DEPT_HEAD = 2;
+    private final static int DIRECTOR = 3;
 
-    public Management(Profile employeeProfile, double salary) {
+    public Management(Profile employeeProfile, double salary, int managementStatus) {
         super(employeeProfile, salary);
-        managementRole = "";
+        if (managementStatus == MANAGER) {
+            managementRole = "Manager";
+        }
+        else if (managementStatus == DEPT_HEAD) {
+            managementRole = "DepartmentHead";
+        }
+        else if (managementStatus == DIRECTOR) {
+            managementRole = "Director";
+        }
         addtlCompensation = 0;
     }
 

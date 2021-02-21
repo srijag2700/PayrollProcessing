@@ -11,6 +11,12 @@ public class Employee {
         this.payment = 0;
     }
 
+    public Employee(Profile employeeProfile) {
+        this.employeeProfile = employeeProfile;
+        this.salary = 0;
+        this.payment = 0;
+    }
+
     public Employee(Profile employeeProfile, double salary) {
         this.employeeProfile = employeeProfile;
         this.salary = salary;

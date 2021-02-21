@@ -1,4 +1,5 @@
 package Project2;
+import java.lang.NullPointerException;
 
 public class Company {
     private Employee[] emplist;
@@ -48,6 +49,7 @@ public class Company {
     } //check the profile before adding
 
     public boolean remove(Employee employee) {
+
         int empIndex = find(employee);
         if (empIndex == NOT_FOUND) {
             return false;
@@ -66,6 +68,7 @@ public class Company {
 
     public boolean setHours(Employee employee) {
         // make temporary employee in payrollprocessing with those hours & pass it into this method
+
         int empIndex = find(employee);
         if (empIndex == NOT_FOUND) {
             return false;
@@ -79,6 +82,9 @@ public class Company {
     } //set working hours for a part time
 
     public void processPayments() {
+        if (numEmployee == 0) {
+            throw new NullPointerException("Employee database is empty.");
+        }
         for (int i = 0; i < emplist.length; i++) {
             emplist[i].calculatePayment();
         }
