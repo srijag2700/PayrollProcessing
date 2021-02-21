@@ -68,6 +68,9 @@ public class Company {
 
     public boolean setHours(Employee employee) {
         // make temporary employee in payrollprocessing with those hours & pass it into this method
+        if (isEmpty()) {
+            throw new NullPointerException("Employee database is empty.");
+        }
 
         int empIndex = find(employee);
         if (empIndex == NOT_FOUND) {
@@ -82,9 +85,6 @@ public class Company {
     } //set working hours for a part time
 
     public void processPayments() {
-        if (numEmployee == 0) {
-            throw new NullPointerException("Employee database is empty.");
-        }
         for (int i = 0; i < emplist.length; i++) {
             emplist[i].calculatePayment();
         }
@@ -126,6 +126,13 @@ public class Company {
             System.out.println(emplist[i]);
         }
     } //print earning statements by date hired
+
+    public boolean isEmpty() {
+        if (numEmployee == 0) {
+            return true;
+        }
+        return false;
+    }
 
     private void insertionSortByCompany() {
         for (int i = 0; i < emplist.length; i++) {

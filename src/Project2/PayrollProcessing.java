@@ -96,6 +96,11 @@ public class PayrollProcessing {
 
             else if (command.equals("S")) {
                 //set hours for a part time employee
+
+                if (com.isEmpty()) {
+                    System.out.println("Employee database is empty.");
+                }
+
                 String empName = tokens[1];
                 String deptName = tokens[2];
                 Date dateHired = new Date(tokens[3]);
