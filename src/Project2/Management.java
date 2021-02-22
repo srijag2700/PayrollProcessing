@@ -7,21 +7,24 @@ public class Management extends Fulltime{
     private final static int MANAGER = 1;
     private final static int DEPT_HEAD = 2;
     private final static int DIRECTOR = 3;
+    private final static int MANAGER_COMP = 5000;
+    private final static int DEPT_HEAD_COMP = 9500;
+    private final static int DIRECTOR_COMP = 12000;
     DecimalFormat df = new DecimalFormat("$#,###,###,##0.00");
 
     public Management(Profile employeeProfile, double salary, int managementStatus) {
         super(employeeProfile, salary);
         if (managementStatus == MANAGER) {
             managementRole = "Manager";
-            addtlCompensation = 5000;
+            addtlCompensation = MANAGER_COMP;
         }
         else if (managementStatus == DEPT_HEAD) {
             managementRole = "DepartmentHead";
-            addtlCompensation = 9500;
+            addtlCompensation = DEPT_HEAD_COMP;
         }
         else if (managementStatus == DIRECTOR) {
             managementRole = "Director";
-            addtlCompensation = 12000;
+            addtlCompensation = DIRECTOR_COMP;
         }
     }
 
