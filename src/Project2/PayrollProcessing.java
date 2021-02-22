@@ -38,6 +38,11 @@ public class PayrollProcessing {
 
                 if (!dateHired.isValid()) {
                     System.out.println(dateHired + " is not a valid date!");
+                    continue;
+                }
+                else if (!deptName.equals("CS") && !deptName.equals("ECE") && !deptName.equals("IT")) {
+                    System.out.println("'" + deptName + "' is not a valid department code.");
+                    continue;
                 }
                 else {
                     Profile newEmpProf = new Profile(empName, deptName, dateHired);
@@ -49,10 +54,16 @@ public class PayrollProcessing {
                         Fulltime newFullTime = new Fulltime(newEmpProf, payInfo);
                         added = com.add(newFullTime);
                     }
-                    else if (command.charAt(2) == 'M') {
+                    else if (command.charAt(1) == 'M') {
                         int mgmtStatus = Integer.parseInt(tokens[5]); // 1, 2, or 3 depending on type of management!
-                        Management newMgmt = new Management(newEmpProf, payInfo, mgmtStatus);
-                        added = com.add(newMgmt);
+                        if (mgmtStatus <= 0  || mgmtStatus > 3) {
+                            System.out.println("Invalid management code.");
+                            continue;
+                        }
+                        else {
+                            Management newMgmt = new Management(newEmpProf, payInfo, mgmtStatus);
+                            added = com.add(newMgmt);
+                        }
                     }
                 }
 
@@ -88,6 +99,7 @@ public class PayrollProcessing {
                 //calculate payments
                 try {
                     com.processPayments();
+                    System.out.println("Calculation of employee payments is done.");
                 }
                 catch (NullPointerException e) {
                     System.out.println("Employee database is empty.");
@@ -100,36 +112,39 @@ public class PayrollProcessing {
                 if (com.isEmpty()) {
                     System.out.println("Employee database is empty.");
                 }
-
-                String empName = tokens[1];
-                String deptName = tokens[2];
-                Date dateHired = new Date(tokens[3]);
-                int hoursWorked = 0;
-
-                try {
-                    hoursWorked = Integer.parseInt(tokens[4]);
-                }
-                catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("Invalid input.");
-                }
-
-                if (hoursWorked > MAX_HOURS) {
-                    System.out.println("Invalid Hours: over 100");
-                }
-                else if (hoursWorked < 0) {
-                    System.out.println("Invalid Hours: less than 0");
-                }
                 else {
-                    Profile tempProfile = new Profile(empName, deptName, dateHired);
-                    Parttime tempPartTime = new Parttime(tempProfile, hoursWorked);
+                    String empName = tokens[1];
+                    String deptName = tokens[2];
+                    Date dateHired = new Date(tokens[3]);
+                    int hoursWorked = 0;
 
-                    if (com.setHours(tempPartTime)) {
-                        System.out.println("Working hours set.");
+                    try {
+                        hoursWorked = Integer.parseInt(tokens[4]);
+                    }
+                    catch (ArrayIndexOutOfBoundsException e) {
+                        System.out.println("Invalid input.");
+                    }
+
+                    if (hoursWorked > MAX_HOURS) {
+                        System.out.println("Invalid Hours: over 100");
+                    }
+                    else if (hoursWorked < 0) {
+                        System.out.println("Invalid Hours: less than 0");
                     }
                     else {
-                        System.out.println("Employee doesn't exist.");
+                        Profile tempProfile = new Profile(empName, deptName, dateHired);
+                        Parttime tempPartTime = new Parttime(tempProfile, hoursWorked);
+
+                        if (com.setHours(tempPartTime)) {
+                            System.out.println("Working hours set.");
+                        }
+                        else {
+                            System.out.println("Employee doesn't exist.");
+                        }
                     }
                 }
+
+
             }
 
             else if (command.equals("PA")) {

@@ -13,8 +13,15 @@ public class Company {
     }
 
     private int find(Employee employee) {
+        if (numEmployee == 0) {
+            return NOT_FOUND;
+        }
+
         for (int i = 0; i < emplist.length; i++) {
-            if (emplist[i].equals(employee)) {
+            if (emplist[i] == null) {
+                continue;
+            }
+            else if (emplist[i].getEmployeeProfile().equals(employee.getEmployeeProfile())) {
                 return i; // returns index of employee
             }
         }
@@ -39,13 +46,13 @@ public class Company {
             grow();
         }
 
-        if (find(employee) != NOT_FOUND) {
-            return false;
+        if (find(employee) == NOT_FOUND) {
+            emplist[numEmployee] = employee;
+            numEmployee++;
+            return true;
         }
 
-        emplist[numEmployee] = employee;
-        numEmployee++;
-        return true;
+        return false;
     } //check the profile before adding
 
     public boolean remove(Employee employee) {
@@ -86,7 +93,12 @@ public class Company {
 
     public void processPayments() {
         for (int i = 0; i < emplist.length; i++) {
-            emplist[i].calculatePayment();
+            if (emplist[i] == null) {
+                continue;
+            }
+            else {
+                emplist[i].calculatePayment();
+            }
         }
     } //process payments for all employees
 

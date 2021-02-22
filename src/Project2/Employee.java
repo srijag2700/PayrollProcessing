@@ -4,7 +4,6 @@ public class Employee {
 
     private Profile employeeProfile;
     private double salary; // comment
-
     private double payment;
 
     public Employee() {
@@ -51,5 +50,10 @@ public class Employee {
         }
 
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return (employeeProfile.toString());
     }
 }

@@ -1,8 +1,10 @@
 package Project2;
+import java.text.DecimalFormat;
 
 public class Parttime extends Employee{
 
     private int hoursWorked;
+    DecimalFormat df = new DecimalFormat("$#,###,###,##0.00");
 
     public Parttime(Profile employeeProfile, double salary) {
         super(employeeProfile, salary);
@@ -24,8 +26,8 @@ public class Parttime extends Employee{
 
     @Override
     public String toString() {
-        return super.toString() + "::Payment " + super.getPayment() + "::PART TIME::Hourly Rate $"
-                + super.getSalary() + "::Hours worked this period: " + hoursWorked;
+        return super.toString() + "::Payment " + df.format(super.getPayment()) + "::PART TIME::Hourly Rate "
+                + df.format(super.getSalary()) + "::Hours worked this period: " + hoursWorked;
     }
 
     @Override
