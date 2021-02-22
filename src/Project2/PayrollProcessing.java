@@ -2,7 +2,11 @@ package Project2;
 import java.util.Scanner;
 
 /**
- * insert comments here
+ * The PayrollProcessing class acts as a front-end for users to access the Company and interact with Employees.
+ *
+ * Users can utilize all Company commands, including adding, removing, setting part-time employee hours, performing wage calculations,
+ * and viewing the list of employees in the library sorted by their department, date hired, or in their current order.
+ * @author Srija Gottiparthi, Catherine Nguyen
  */
 
 public class PayrollProcessing {
