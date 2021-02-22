@@ -1,17 +1,33 @@
 package Project2;
 import java.lang.NullPointerException;
 
+/**
+ * The Company class is used to store all of the current employees in array format.
+ * It includes fields such as the list of employees, number of employees and data about the capacity, and
+ * methods such as growing the array, adding an employee, removing an employee, setting a part time employee's hours,
+ * processing payments for all employees, and printing the list of employees in its current order, by date of hire, or by department.
+ * @author Srija Gottiparthi, Catherine Nguyen
+ */
+
 public class Company {
     private Employee[] emplist;
     private int numEmployee;
     private final static int CAPACITY = 4;
     private final static int NOT_FOUND = -1;
 
+    /**
+     * Initializes a new Company object with array size 4 and no employees.
+     */
     public Company() {
         numEmployee = 0;
         emplist = new Employee[CAPACITY];
     }
 
+    /**
+     * Searches the array iteratively for a given employee.
+     * @param employee the employee to find
+     * @return index of employee in array, -1 if not found
+     */
     private int find(Employee employee) {
         if (numEmployee == 0) {
             return NOT_FOUND;
@@ -28,6 +44,9 @@ public class Company {
         return NOT_FOUND;
     }
 
+    /**
+     * Increases the capacity of the company by 4 when the array is full.
+     */
     private void grow() {
         int currentLength = emplist.length;
         int newLength = currentLength + CAPACITY;
@@ -41,6 +60,12 @@ public class Company {
 
         emplist = tempEmp;
     }
+
+    /**
+     * Adds an employee to the company.
+     * @param employee the employee to add
+     * @return true if employee is successfully added, false otherwise
+     */
     public boolean add(Employee employee) {
         if (numEmployee == emplist.length) {
             grow();
@@ -55,6 +80,11 @@ public class Company {
         return false;
     } //check the profile before adding
 
+    /**
+     * Removes an employee from the company.
+     * @param employee the employee to remove
+     * @return true if employee is successfully removed, false otherwise
+     */
     public boolean remove(Employee employee) {
 
         int empIndex = find(employee);
@@ -73,6 +103,11 @@ public class Company {
         return true;
     } //maintain the original sequence
 
+    /**
+     * Sets the hours worked in the current pay period for the given (part-time) employee.
+     * @param employee the part-time employee
+     * @return true if hours successfully set, false otherwise
+     */
     public boolean setHours(Employee employee) {
         // make temporary employee in payrollprocessing with those hours & pass it into this method
         if (isEmpty()) {
@@ -91,6 +126,9 @@ public class Company {
 
     } //set working hours for a part time
 
+    /**
+     * Calculates payments for all employees in the company.
+     */
     public void processPayments() {
         for (int i = 0; i < emplist.length; i++) {
             if (emplist[i] == null) {
@@ -102,6 +140,9 @@ public class Company {
         }
     } //process payments for all employees
 
+    /**
+     * Prints the list of employees in its current order.
+     */
     public void print() {
         if (numEmployee == 0) {
             System.out.println("Employee database is empty.");
@@ -115,18 +156,24 @@ public class Company {
         }
     } //print earning statements for all employees
 
+    /**
+     * Prints the list of employees sorted by their department, in alphabetical order.
+     */
     public void printByDepartment() {
         if (numEmployee == 0) {
             System.out.println("Employee database is empty.");
             return;
         }
-        insertionSortByCompany();
+        insertionSortByDepartment();
         System.out.println("**List of books by the book numbers.");
         for (int i = 0; i < emplist.length; i++) {
             System.out.println(emplist[i]);
         }
     } //print earning statements by department
 
+    /**
+     * Prints the list of employees sorted by their date hired, in ascending order.
+     */
     public void printByDate() {
         if (numEmployee == 0) {
             System.out.println("Employee database is empty.");
@@ -139,6 +186,10 @@ public class Company {
         }
     } //print earning statements by date hired
 
+    /**
+     * Checks if there are employees in the company.
+     * @return true if empty, false otherwise
+     */
     public boolean isEmpty() {
         if (numEmployee == 0) {
             return true;
@@ -146,7 +197,10 @@ public class Company {
         return false;
     }
 
-    private void insertionSortByCompany() {
+    /**
+     * Performs an insertion sort on the company array to sort by department name in alphabetical order.
+     */
+    private void insertionSortByDepartment() {
         for (int i = 0; i < emplist.length; i++) {
             Employee currEmp = emplist[i];
             String currDept = currEmp.getEmployeeProfile().getDepartment();
@@ -159,6 +213,9 @@ public class Company {
         }
     }
 
+    /**
+     * Performs an insertion sort on the company array to sort by date hired, from earliest to latest.
+     */
     private void insertionSortByDate() {
         for (int i = 0; i < emplist.length; i++) {
             Employee currEmp = emplist[i];
