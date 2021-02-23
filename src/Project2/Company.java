@@ -111,7 +111,7 @@ public class Company {
     public boolean setHours(Employee employee) {
         // make temporary employee in payrollprocessing with those hours & pass it into this method
         if (isEmpty()) {
-            throw new NullPointerException("Employee database is empty.");
+            return false;
         }
 
         int empIndex = find(employee);
