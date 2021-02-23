@@ -1,4 +1,4 @@
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import java.text.DecimalFormat;
 
 public class ManagementTest {
@@ -37,6 +37,6 @@ public class ManagementTest {
         Profile testEmpProf1 = new Profile("Doe,Jane", "CS", new Date("1/1/2020"));
         Management testMgmt1 = new Management(testEmpProf1, 95000, "Manager");
         testMgmt1.calculatePayment();
-        assertEquals(3846.15, testMgmt1.payment)
+        assertEquals(3846.15, testMgmt1.getPayment());
     }
 }
