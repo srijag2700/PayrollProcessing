@@ -66,6 +66,9 @@ public class Parttime extends Employee{
      */
     @Override
     public boolean equals(Object obj) {
+        if (obj instanceof Employee) {
+            return super.equals(obj);
+        }
         Parttime emp = (Parttime) obj;
         if (!super.equals(obj) && super.getSalary() != emp.getSalary() && super.getPayment() != emp.getPayment() && hoursWorked != emp.getHoursWorked()) {
             return false;

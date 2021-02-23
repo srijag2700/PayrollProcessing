@@ -94,7 +94,10 @@ public class Company {
 
         Employee[] tempEmp = new Employee[emplist.length-1];
         for (int i = 0, j = 0; i < emplist.length; i++) {
-            if (!emplist[i].equals(employee)) {
+            if (emplist[i] == null) {
+                continue;
+            }
+            else if (!emplist[i].equals(employee)) {
                 tempEmp[j++] = emplist[i];
             }
         }
