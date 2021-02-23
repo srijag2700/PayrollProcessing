@@ -14,7 +14,7 @@ public class Employee {
     private double payment;
 
     /**
-     * Initializes a new Employee object with a given profile & a default salary & payment of 0.
+     * Initializes a new Employee object with a given profile and a default salary and payment of 0.
      * @param employeeProfile the profile of the employee
      */
     public Employee(Profile employeeProfile) {
@@ -35,6 +35,14 @@ public class Employee {
     }
 
     /**
+     * Sets the employee's payment.
+     * @param payment the employee's payment
+     */
+    public void setPayment(double payment) {
+        this.payment = payment;
+    }
+
+    /**
      * Returns the employee's profile.
      * @return the employee's profile
      */
@@ -51,14 +59,6 @@ public class Employee {
     }
 
     /**
-     * Sets the employee's payment.
-     * @param payment the employee's payment
-     */
-    public void setPayment(double payment) {
-        this.payment = payment;
-    }
-
-    /**
      * Gets the employee's payment.
      * @return the employee's payment
      */
@@ -69,7 +69,6 @@ public class Employee {
     /**
      * Calculate's the employee's payment.
      * This method is overridden for each type of employee.
-     * @return the employee's payment
      */
     public void calculatePayment() {
         return;

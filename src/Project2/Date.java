@@ -15,6 +15,16 @@ public class Date implements Comparable<Date>{
     private int day;
 
     /**
+     * Initializes a new default Date object with the current (today's) date.
+     */
+    public Date() {
+        Calendar today = Calendar.getInstance();
+        this.year = today.get(Calendar.YEAR);
+        this.month = today.get(Calendar.MONTH);
+        this.day = today.get(Calendar.DAY_OF_MONTH);
+    } //create an object with today’s date (see Calendar class)
+
+    /**
      * Initializes a new Date object with the given date.
      * @param date the date given as a string in "mm/dd/yyyy" format
      */
@@ -30,16 +40,6 @@ public class Date implements Comparable<Date>{
         this.month = dateNumbers[0];
         this.day = dateNumbers[1];
     } //taking mm/dd/yyyy and create a Date object
-
-    /**
-     * Initializes a new default Date object with the current (today's) date.
-     */
-    public Date() {
-        Calendar today = Calendar.getInstance();
-        this.year = today.get(Calendar.YEAR);
-        this.month = today.get(Calendar.MONTH);
-        this.day = today.get(Calendar.DAY_OF_MONTH);
-    } //create an object with today’s date (see Calendar class)
 
     /**
      * Returns the Date's year.

@@ -13,7 +13,7 @@ public class Parttime extends Employee{
     DecimalFormat df = new DecimalFormat("$#,###,###,##0.00");
 
     /**
-     * Initializes a new Parttime object with a given employee profile & hourly salary information, and a default of 0 hours worked.
+     * Initializes a new Parttime object with a given employee profile and hourly salary information, and a default of 0 hours worked.
      * @param employeeProfile the employee's profile
      * @param salary the employee's hourly salary
      */

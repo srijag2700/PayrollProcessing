@@ -168,9 +168,11 @@ public class Company {
             return;
         }
         insertionSortByDepartment();
-        System.out.println("**List of books by the book numbers.");
+        System.out.println("--Printing earning statements by department--");
         for (int i = 0; i < emplist.length; i++) {
-            System.out.println(emplist[i]);
+            if (emplist[i] != null) {
+                System.out.println(emplist[i]);
+            }
         }
     } //print earning statements by department
 
@@ -185,7 +187,9 @@ public class Company {
         insertionSortByDate();
         System.out.println("--Printing earning statements by date hired--");
         for (int i = 0; i < emplist.length; i++) {
-            System.out.println(emplist[i]);
+            if (emplist[i] != null) {
+                System.out.println(emplist[i]);
+            }
         }
     } //print earning statements by date hired
 
@@ -205,6 +209,9 @@ public class Company {
      */
     private void insertionSortByDepartment() {
         for (int i = 0; i < emplist.length; i++) {
+            if (emplist[i] == null) {
+                continue;
+            }
             Employee currEmp = emplist[i];
             String currDept = currEmp.getEmployeeProfile().getDepartment();
             int j = i - 1;
@@ -221,6 +228,9 @@ public class Company {
      */
     private void insertionSortByDate() {
         for (int i = 0; i < emplist.length; i++) {
+            if (emplist[i] == null) {
+                continue;
+            }
             Employee currEmp = emplist[i];
             Date currDate = currEmp.getEmployeeProfile().getDateHired();
             int j = i - 1;

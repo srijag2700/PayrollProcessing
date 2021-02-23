@@ -12,7 +12,7 @@ public class Fulltime extends Employee{
     DecimalFormat df = new DecimalFormat("$#,###,###,##0.00");
 
     /**
-     * Initializes a new Fulltime object with a given employee profile & yearly salary information.
+     * Initializes a new Fulltime object with a given employee profile and yearly salary information.
      * @param employeeProfile the employee's profile
      * @param salary the employee's yearly salary
      */

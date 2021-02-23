@@ -51,10 +51,18 @@ public class PayrollProcessing {
                 else {
                     Profile newEmpProf = new Profile(empName, deptName, dateHired);
                     if (command.charAt(1) == 'P') {
+                        if (payInfo < 0) {
+                            System.out.println("Pay rate cannot be negative.");
+                            continue;
+                        }
                         Parttime newPartTime = new Parttime(newEmpProf, payInfo);
                         added = com.add(newPartTime);
                     }
                     else if (command.charAt(1) == 'F') {
+                        if (payInfo < 0) {
+                            System.out.println("Salary cannot be negative.");
+                            continue;
+                        }
                         Fulltime newFullTime = new Fulltime(newEmpProf, payInfo);
                         added = com.add(newFullTime);
                     }
@@ -62,6 +70,10 @@ public class PayrollProcessing {
                         int mgmtStatus = Integer.parseInt(tokens[5]); // 1, 2, or 3 depending on type of management!
                         if (mgmtStatus <= 0  || mgmtStatus > 3) {
                             System.out.println("Invalid management code.");
+                            continue;
+                        }
+                        else if (payInfo < 0) {
+                            System.out.println("Salary cannot be negative.");
                             continue;
                         }
                         else {
@@ -81,33 +93,34 @@ public class PayrollProcessing {
 
             else if (command.equals("R")) {
                 //do remove
+                if (com.isEmpty()) {
+                    System.out.println("Employee database is empty.");
+                    continue;
+                }
+
                 String empName = tokens[1];
                 String deptName = tokens[2];
                 Date dateHired = new Date(tokens[3]);
                 Profile tempProfile = new Profile(empName, deptName, dateHired);
                 Employee tempEmployee = new Employee(tempProfile);
-                try {
-                    if (com.remove(tempEmployee)) {
-                        System.out.println("Employee removed.");
-                    }
-                    else {
-                        System.out.println("Employee doesn't exist.");
-                    }
+                if (com.remove(tempEmployee)) {
+                    System.out.println("Employee removed.");
                 }
-                catch (NullPointerException e) {
-                    System.out.println("Employee database is empty.");
+                else {
+                    System.out.println("Employee doesn't exist.");
                 }
             }
 
             else if (command.equals("C")) {
                 //calculate payments
-                try {
-                    com.processPayments();
-                    System.out.println("Calculation of employee payments is done.");
-                }
-                catch (NullPointerException e) {
+
+                if (com.isEmpty()) {
                     System.out.println("Employee database is empty.");
+                    continue;
                 }
+
+                com.processPayments();
+                System.out.println("Calculation of employee payments is done.");
             }
 
             else if (command.equals("S")) {
@@ -133,7 +146,7 @@ public class PayrollProcessing {
                         System.out.println("Invalid Hours: over 100");
                     }
                     else if (hoursWorked < 0) {
-                        System.out.println("Invalid Hours: less than 0");
+                        System.out.println("Working hours cannot be negative.");
                     }
                     else {
                         Profile tempProfile = new Profile(empName, deptName, dateHired);
@@ -143,7 +156,7 @@ public class PayrollProcessing {
                             System.out.println("Working hours set.");
                         }
                         else {
-                            System.out.println("Employee doesn't exist.");
+                            System.out.println("Employee does not exist.");
                         }
                     }
                 }
